@@ -1,0 +1,11 @@
+--- a/MSVC_2015/gendef/gendef.cc	2016-04-14 18:12:58.000000000 +0200
++++ b/MSVC_2015/gendef/gendef.cc	2016-08-14 00:54:38.125727300 +0200
+@@ -76,7 +76,7 @@
+ 			  while(*e != ' ' && *e != '\t' && *e != '\0' && *e!= '\n') e++;
+ 			  *e = '\0';
+ 			
+-			if(strchr(s,'?')==0 && s[0]=='_' && strchr(s,'@') == 0 )//this is a C export type: _fct -> fct
++			if(strchr(s,'?')==0 && s[0]=='_' && strchr(s,'@') == 0 && strncmp(s,"__local",7)!=0 && strncmp(s,"_vsprin",7)!=0 && strncmp(s,"_vsnpri",7)!=0 )//this is a C export type: _fct -> fct
+ 				  def_file << "    " << (s+1) << endl;			
+ 			else
+ 			if(strchr(s,'?')!=0 && strncmp(s,"??_G",4)!=0 && strncmp(s,"??_E",4)!=0) {

@@ -646,6 +646,20 @@ class Project_gtk3(Project_gtk_base):
 
 Project.add(Project_gtk3())
 
+class Project_gtkmm3(Tarball, Project):
+    def __init__(self):
+        Project.__init__(self,
+            'gtkmm3',
+            archive_url = 'http://ftp.acc.umu.se/pub/GNOME/sources/gtkmm/3.20/gtkmm-3.20.1.tar.xz',
+            dependencies = ['gtk3', 'atkmm', 'pangomm'],
+            patches = ['stdio.patch'],
+            )
+
+    def build(self):
+        self.exec_msbuild(r'MSVC_2015\gtkmm.sln')
+
+Project.add(Project_gtkmm3())
+
 class Project_gtksourceview3(Tarball, Project):
     def __init__(self):
         Project.__init__(self,
