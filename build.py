@@ -250,6 +250,27 @@ class Project_cairo(Tarball, Project):
 
 Project.add(Project_cairo())
 
+class Project_cairomm(Tarball, Project):
+    def __init__(self):
+        Project.__init__(self,
+            'cairomm',
+            archive_url = 'http://ftp.acc.umu.se/pub/GNOME/sources/cairomm/1.12/cairomm-1.12.0.tar.xz',
+            dependencies = ['cairo', 'libsigc++'],
+            )
+
+    def build(self):
+        self.exec_msbuild(r'MSVC_2015\cairomm.sln')
+        
+        self.install(r'.\MSVC_2015\%(configuration)s\%(platform)s\bin\cairomm-1.0.dll bin')
+        self.install(r'.\MSVC_2015\%(configuration)s\%(platform)s\bin\cairomm-1.0.pdb bin')
+        self.install(r'.\MSVC_2015\%(configuration)s\%(platform)s\bin\cairomm-1.0.lib lib')
+        
+        self.install(r'.\MSVC_2015\cairomm\cairommconfig.h lib\cairomm-1.0\include')
+        self.install(r'.\cairomm\cairomm.h include\cairomm-1.0')
+        self.install(r'.\cairomm\*.h include\cairomm-1.0\cairomm')
+
+Project.add(Project_cairomm())
+
 class Project_cyrus_sasl(Tarball, Project):
     def __init__(self):
         Project.__init__(self,
