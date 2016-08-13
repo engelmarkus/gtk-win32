@@ -476,6 +476,19 @@ class Project_glib_networking(Tarball, Project):
 
 Project.add(Project_glib_networking())
 
+class Project_glibmm(Tarball, Project):
+    def __init__(self):
+        Project.__init__(self,
+            'glibmm',
+            archive_url = 'http://ftp.acc.umu.se/pub/GNOME/sources/glibmm/2.48/glibmm-2.48.1.tar.xz',
+            dependencies = ['glib', 'libsigc++'],
+            )
+
+    def build(self):
+        self.exec_msbuild(r'MSVC_2015\glibmm.sln')
+
+Project.add(Project_glibmm())
+
 class Project_grpc(GitRepo, Project):
     def __init__(self):
         Project.__init__(self,
