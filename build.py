@@ -212,6 +212,19 @@ class Project_atk(Tarball, Project):
 
 Project.add(Project_atk())
 
+class Project_atkmm(Tarball, Project):
+    def __init__(self):
+        Project.__init__(self,
+            'atkmm',
+            archive_url = 'http://ftp.acc.umu.se/pub/GNOME/sources/atkmm/2.24/atkmm-2.24.2.tar.xz',
+            dependencies = ['atk', 'glibmm'],
+            )
+
+    def build(self):
+        self.exec_msbuild(r'MSVC_2015\atkmm.sln')
+
+Project.add(Project_atkmm())
+
 class Project_cairo(Tarball, Project):
     def __init__(self):
         Project.__init__(self,
