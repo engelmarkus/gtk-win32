@@ -978,6 +978,19 @@ class Project_pango(Tarball, Project):
 
 Project.add(Project_pango())
 
+class Project_pangomm(Tarball, Project):
+    def __init__(self):
+        Project.__init__(self,
+            'pangomm',
+            archive_url = 'http://ftp.acc.umu.se/pub/GNOME/sources/pangomm/2.40/pangomm-2.40.0.tar.xz',
+            dependencies = ['pango', 'cairomm', 'glibmm'],
+            )
+
+    def build(self):
+        self.exec_msbuild(r'MSVC_2015\pangomm.sln')
+
+Project.add(Project_pangomm())
+
 class Project_pixman(Tarball, Project):
     def __init__(self):
         Project.__init__(self,
