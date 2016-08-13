@@ -778,6 +778,19 @@ class Project_sqlite(Tarball, Project):
 
 Project.add(Project_sqlite())
 
+class Project_libsigcpp(Tarball, Project):
+    def __init__(self):
+        Project.__init__(self,
+            'libsigc++',
+            archive_url = 'http://ftp.acc.umu.se/pub/GNOME/sources/libsigc++/2.8/libsigc++-2.8.0.tar.xz',
+            dependencies = [],
+            )
+
+    def build(self):
+        self.exec_msbuild(r'MSVC_2015\libsigc++2.sln')
+
+Project.add(Project_libsigcpp())
+
 class Project_libsoup(Tarball, Project):
     def __init__(self):
         Project.__init__(self,
